@@ -27,7 +27,7 @@ all in a Gradio web app. Built around daily lessons, but works for any readable 
 ### 2. Clone the repo
 
 ```bash
-git clone https://github.com/anandnarasipuram/PROJECT-Podcast-dialogue.git
+git clone https://github.com/anandnarasipuram/Project-Podcast_dialogue.git
 cd PROJECT-Podcast-Studio
 ```
 

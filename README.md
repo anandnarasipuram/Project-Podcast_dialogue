@@ -27,7 +27,7 @@ all in a Gradio web app. Built around daily lessons, but works for any readable 
 ### 2. Clone the repo
 
 ```bash
-git clone https://github.com/nyelugo/PROJECT-Podcast-Studio.git
+git clone https://github.com/anandnarasipuram/PROJECT-Podcast-dialogue.git
 cd PROJECT-Podcast-Studio
 ```
 
@@ -47,7 +47,7 @@ it's already git-ignored.
 
 - **macOS:** double-click **`run.command`**. (First time only: if macOS says “unidentified developer”,
   right-click the file → **Open** → **Open**.)
-- **Windows:** double-click **`run.bat`**.
+- **Windows:** double-click **`run.bat`**. (in the local folder, and not in VS code)
 
 The launcher creates a virtual environment, installs everything, and opens the app. First run takes a
 minute; after that it's instant.

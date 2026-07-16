@@ -1,0 +1,21 @@
+Unit: Generative AI (Week 1, Day 5)
+
+Learning Goals: explain the architecture and scale of Large Language Models (LLMs) and their evolution from classic AI; set up OpenAI development accounts and API access; use the OpenAI Playground and alternatives to test/compare models; integrate LLM APIs with Python via the OpenAI library; control responses with parameters like temperature, model selection, and message roles; implement structured output with Pydantic to prevent hallucinations.
+
+Introduction to LLMs: Large Language Models are massive neural networks with billions or trillions of parameters - a huge evolution from classic AI (thousands of parameters) to modern GPT models (~1.7 trillion parameters).
+
+Encoder-Decoder Architecture and Attention: the attention mechanism determines the importance of each component in a sequence relative to others, letting tokens attend to other tokens, with different attention heads focusing on different aspects of the input.
+
+Accessing LLMs through APIs: running LLMs locally is computationally intensive, so we access them through APIs - send a message, receive a reply from cloud-hosted models.
+
+Setting up OpenAI: sign up at platform.openai.com, purchase a small amount of credits (~$10 for initial testing), and disable auto-recharge to control costs.
+
+Playground vs ChatGPT: the OpenAI Playground is a developer testing environment with fine-grained control over parameters; ChatGPT is a consumer chatbot with a simplified, pre-configured interface. Alternative playgrounds: AI Studio (Gemini), Claude API Console (Anthropic), Cohere Playground, Hugging Face chat.
+
+API integration with Python: the OpenAI library connects Python apps to the models, giving programmatic control over thinking depth, model selection, token limits, and output formats.
+
+Response parameters: temperature (randomness vs determinism), model selection, instructions (system prompts), and input messages - all tunable per use case.
+
+Message roles in the Chat Completions API: developer (highest-priority instructions), user (end-user instructions), and assistant (model-generated messages), enabling structured multi-turn conversations. Chat Completions maintain conversation state automatically; older Completions require sending the full history each time.
+
+Structured Output: using Pydantic classes ensures AI responses match an exact schema, preventing app breaks from unexpected JSON keys or missing fields - the reliable way to prevent hallucinated structure. JSON Mode is an older, more limited approach and should be avoided when structured output is available.

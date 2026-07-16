@@ -1,0 +1,25 @@
+Unit: AI Agent Skills (Week 2, Day 5)
+
+Learning Goals: explain what an agent skill is and how it differs from a one-off prompt; describe the standard SKILL.md layout, progressive disclosure, and why the description field matters for activation; contrast skills with MCP; apply rules for authoring a focused skill; know where skills live and how to enable/invoke/disable them.
+
+Introduction: after practising prompting and coding assistants, agent skills are the next layer - a way to PACKAGE how your assistant should handle a class of tasks so the same procedure works reliably next time. (Self-guided lesson: concepts + pointers to setup docs, since tooling changes fast.)
+
+What is an agent skill? Usually a FOLDER that teaches an agent how to execute a repeatable workflow: instructions plus optional scripts, references, and assets. Not a single pasted prompt - a reusable, versionable, shareable package.
+
+Standard format: a file named SKILL.md with YAML frontmatter. Required: name and description. Common optional folders: scripts/ (executable helpers for deterministic steps), references/ (longer docs loaded when needed), assets/ (templates, samples).
+
+Progressive disclosure: the agent doesn't load every line of every skill up front. It first sees short metadata (name + description) - enough to decide if the skill applies. When chosen, it reads the full SKILL.md (and any files you tell it to open). This keeps the catalogue lightweight and saves context.
+
+Triggering/routing: for implicit activation, the DESCRIPTION field does most of the work - write it so the agent matches user intent, including when they don't name your domain. Skills pay off for domain-specific, multi-step tasks (unfamiliar APIs, internal naming, reviews); trivial asks the model can solve alone, and the skill may never load (that's fine).
+
+Skills vs MCP: Skills encode PROCEDURES and EXPERTISE (how to run a workflow, what to check, team defaults). MCP exposes TOOLS and SERVICES (APIs, databases, browsers). Different roles.
+
+Creating skills well:
+- Grounding & scope: start from REAL expertise (a task you did, a runbook, an API spec, a style guide, corrections you repeated). Skills from vague "best practices" lack the specifics that matter. One job per skill - scope it like a well-named function; a mega-skill triggers unpredictably.
+- Lean instructions: ask "would the agent get this wrong without me?" If no, cut it. Skip basics the model already knows.
+- The description field (activation): use imperative phrasing ("Use this skill when..."), describe outcomes/situations the user cares about (not internals), set boundaries so near-miss prompts don't false-trigger, and stay concise (there's a hard length limit).
+- Structure & reliability: put long tables/API appendixes/policies in references/ and tell the agent when to open them; add tested scripts/ for steps that repeat every run; include output templates when format matters; keep a "Gotchas" section for facts that break naive assumptions.
+
+Setup: product-specific - use the official docs (Claude Code Skills, OpenAI Codex Agent Skills, agentskills.io for the open specification).
+
+Summary: agent skills package repeatable workflows as SKILL.md + optional scripts/references/assets, on an open spec multiple tools can adopt. Progressive disclosure keeps metadata small until a skill is selected; the description drives routing - write it for user intent with clear boundaries. Good skills come from real tasks, stay scoped and lean, and improve through use.

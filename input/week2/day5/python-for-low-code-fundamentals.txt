@@ -1,0 +1,19 @@
+Unit: Python for Low-Code Fundamentals (Week 2, Day 5)
+
+Learning Goals: understand technical debt in AI-assisted development; recognise AI's limitations (it can't see the big picture, has context limits); apply refactoring with AI tools; use deep-thinking approaches (first-principles reasoning, intellectual honesty, diffuse thinking); manage focus and mental overload.
+
+Introduction: we've used LLMs outside our tools; coding agents and MCPs now integrate AI into development. Use AI openly, but ensure outputs are good, tested, and high quality. Reminders: AI is not a miracle worker, not a shortcut, not lazy or cheating - and it is actually NOT easy to use well. ("In God we trust. All others must bring data." - Deming.)
+
+The reality of AI at work: research shows a gap between controlled studies (GitHub/McKinsey productivity gains) and real workplaces. Engineers were rated 9% LESS competent when reviewers believed AI was used, even though code quality ratings stayed the same - the penalty hit perceived ability, not the code. Gender disparity existed (female engineers penalised more). Lesson: don't advertise "AI-assisted" if the team culture isn't ready.
+
+Three key issues with AI-assisted development:
+1) Technical debt - the future cost of shortcuts taken now (like financial debt). ~$2.4 trillion in the USA, with under 20% of budget allocated to address it. Managing technical debt while using AI is one of the most important skills for success. (Note: some repetition is deliberate and necessary - e.g. medical/legal docs, training.)
+2) AI cannot see the big picture - it optimises individual pieces while breaking the larger system. Example: "optimise this slow query" - the AI optimises it, but the database runs out of memory and locks up. AI can't see system-wide/infrastructure/long-term implications, so your technical skills remain essential.
+3) Focus and mental overload - easy AI output causes context switching, decision paralysis, and too much code to review. Manage cognitive load.
+
+Essential skills for AI-assisted development ("vibe coding" and low-code are NOT magic - you still use your technical skills):
+Skill 1 - Refactoring code: read code across styles/paradigms, understand dependencies and how components interact, know which technical debt actually matters and measure its impact. Use DESIGN PATTERNS (reusable blueprints - don't reinvent the wheel): encapsulation (hide details), composition (reuse), abstractions (interfaces), extensibility. GenAI patterns include LangChain, prompt management, context-window management, semantic caching, token optimisation, output validation & retry, prompt chaining, few-shot, model routing. TEST everything - untested code isn't usable; AI can help write unit/integration tests. Brownfield (existing/legacy systems - harder for AI, higher risk) vs Greenfield (new from scratch - easier for AI, lower risk).
+Skill 2 - AI deep thinking: first-principles reasoning (don't assume; distinguish convention from necessity; ask "what is the client's actual problem?"), intellectual honesty (pay attention to what you DON'T understand; fail fast and fix), diffuse thinking (link concepts across the codebase; ask how a change affects other areas).
+Skill 3 - Focus management: a clear intention/goal per chat; finish one workflow instead of juggling many agents; incremental outputs (small chunks, review before moving on); a capture system (to-do list for unresolved problems); recognise tiredness and take breaks.
+
+Key takeaways: technical skills are still essential; vibe/low coding are not magical shortcuts; AI is not easy to use well - it needs discipline, critical thinking, and strong foundations; managing technical debt, system-wide thinking, and focus are critical. AI amplifies your capabilities but does not replace your expertise.

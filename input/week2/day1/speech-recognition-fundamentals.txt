@@ -1,0 +1,26 @@
+Unit: Speech Recognition Fundamentals (Week 2, Day 1)
+
+Learning Goals: explain the fundamentals of Speech-to-Text (STT) and Text-to-Speech (TTS) and their applications; identify challenges in speech recognition; evaluate STT models using Word Error Rate (WER) and Character Error Rate (CER); compare STT/TTS providers on accuracy, speed, and cost; apply ethical considerations (voice-cloning consent, content disclosure); select Whisper API models by speed vs accuracy.
+
+Intro: STT and TTS let AI understand and generate human speech, bridging natural language and digital systems - making AI more accessible and human-like.
+
+Speech-to-Text (STT):
+- Digital sound is represented by sampling; the sample rate determines how many times per second the signal is measured. Higher rates capture more detail but cost more storage/processing.
+- Challenges: the "cocktail party problem" (multiple speakers), code-switching between languages, domain-specific terminology, children's speech, emotional speech, and non-standard speech (stutters, disabilities).
+- Audio transformers: two architectures - CTC (Connectionist Temporal Classification, encoder-only models like Wav2Vec2, HuBERT, predict character-level output) and Seq2Seq (flexible sequence-to-sequence mapping).
+- State-of-the-art models: Whisper (OpenAI, 4-8% WER, trained on 680k hours), Conformer (Google, 3-6% WER, real-time), Wav2Vec2 (Meta, 5-8%, self-supervised), SpeechT5 (Microsoft, 4-7%, unified).
+
+Metrics:
+- Word Error Rate: WER = (Substitutions + Deletions + Insertions) / (S + D + Correct words). Lower is better.
+- Character Error Rate (CER): errors at character level; WER is usually higher than CER since word mistakes compound character errors.
+- Word Accuracy: WAcc = 1 - WER; higher = better, easier to read at a glance.
+
+Whisper API model sizes: Tiny (39M, ~32x speed), Base (74M, ~16x), Small (244M, ~6x), Medium (769M, ~2x), Large (1550M, 1x baseline). Choose by balancing speed vs accuracy - for real-time, favour the faster/smaller model; for offline accuracy, the larger.
+
+Text-to-Speech (TTS):
+- Use cases: accessibility for 285M visually impaired people, dyslexia/language-learning support, the $5B audiobook market, virtual assistants (Alexa, Siri), 24/7 customer service, game/character voices.
+- Hard problems in natural speech: emphasis changes meaning, homophones need context ("read" as reed vs red), prosody (rhythm/intonation), emotional expression, and natural breathing/pauses.
+- Evolution: 1960s formant synthesis (robotic) -> 1980s concatenative -> 1990s diphone -> 2000s unit selection (original Siri) -> 2010s parametric (Google WaveNet) -> 2020s neural (ElevenLabs, OpenAI) with human-like quality.
+- Provider comparison: OpenAI (great integration, 6 voices, $15-30 / 1M chars), ElevenLabs (best quality + voice cloning, 100+ voices, $30-100), Google (400+ languages, $4-16), Amazon Polly (AWS, 60+ voices), Azure (enterprise, 400+ voices), PlayHT (ultra-realistic, 800+ voices).
+
+Ethics in TTS: always get consent for voice cloning, watermark AI-generated content, disclose AI voice usage, respect voice-actor rights, prevent misuse/deepfakes, protect privacy, and monitor for abuse.

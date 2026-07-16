@@ -1,0 +1,7 @@
+Okay everyone, welcome to day two of week two. Today we're focusing on speech recognition and how speech to text systems actually work. The key idea is that a model like Whisper takes an audio waveform and predicts the most likely sequence of words. It doesn't truly understand the audio; it's making statistical predictions about what was said.
+
+We talked about the main challenges these systems face. First, the cocktail party problem, where multiple people speak at once and the system has to separate the voices. Second, domain specific terminology like names, acronyms, and jargon that the model may not have seen often. Third, code switching, when a speaker mixes two languages in one sentence. And fourth, emotional speech, because tone and pace change the acoustics.
+
+We also covered how to choose a model. For real time applications, speed matters most, so you pick a smaller, faster model even if it's slightly less accurate. For offline work where accuracy matters most, you use a larger model. The takeaway is that the right model depends on the constraint of the job, not just which one is biggest.
+
+Tomorrow we'll start building our own podcast studio project. Great work today, see you then.

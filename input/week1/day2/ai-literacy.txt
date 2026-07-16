@@ -1,0 +1,37 @@
+Unit: AI Literacy (Week 1, Day 2 - Review and Setting up)
+
+As you have seen in the prework, AI involves a lot more than just generative AI for text. This lesson introduces key concepts and frameworks that will guide your understanding of AI throughout the bootcamp.
+
+Learning Goals: After this lesson, you will be able to:
+- Distinguish between different types of AI (Narrow AI, Weak AI, AGI, ASI) and explain their characteristics
+- Explain Moravec's Paradox and identify tasks that are easy vs. difficult for AI systems
+- Classify AI systems based on their capabilities and limitations
+- Apply the AI consulting framework to evaluate whether a problem is suitable for AI solutions
+- Differentiate between Large Language Models (LLMs) and Agentic AI, and understand their use cases
+
+Welcome & Introductions: We begin with an introduction activity where each student shares their name, background, one AI tool they've used, and what excites or concerns them about AI.
+
+AI Literacy Overview: AI literacy extends far beyond text generation, encompassing the broader landscape of artificial intelligence technologies and their applications. Understanding the rise of generative AI and its place within the larger AI ecosystem is essential.
+
+Types of AI: Artificial intelligence can be categorized in multiple ways, each highlighting different aspects of capability, scope, and application.
+
+Moravec's Paradox: Reveals an inverse relationship: tasks that are easy for humans are often difficult for AI, while tasks that are hard for humans can be relatively easy for AI. For example, chess mastery and complex coding are easier for AI, while folding laundry, sewing, and walking on uneven terrain remain challenging. Massive data analysis is where AI excels.
+
+AI-Complete Problems: An AI-complete problem is one that requires full human-level intelligence to solve, paralleling NP-complete problems in computer science. These cannot be solved with a specific algorithm alone and may require Artificial General Intelligence (AGI) to address fully.
+
+AI Classifications:
+- Narrow AI: designed for one specific task, such as chess engines, image classifiers, or cancer prediction models. Excels at its function but cannot transfer knowledge.
+- Weak AI: can handle multiple tasks within a limited domain, such as virtual assistants like Siri or Alexa.
+- Artificial General Intelligence (AGI): human-level reasoning with the ability to transfer learning across domains. Estimates range from 2030 to 2050.
+- Artificial Super Intelligence (ASI): would surpass human capability, with the ability to self-improve.
+- Strong AI: often used interchangeably with AGI.
+
+Large Language Models (LLMs): Hard to categorize neatly. More capable than older narrow AI models but not true AGI. Sometimes referred to as "broad AI".
+
+Agentic AI: A shift from simple question-answer systems to AI that can perform jobs autonomously. Follows a process of question, plan, execute, plan, enabling it to work independently toward goals. Examples include AI coding assistants and autonomous research agents.
+
+AI Consulting Framework: Before starting any AI project, break down the problem systematically. Ask: Has this problem been solved before? What type of AI does it require? What are the consequences if it fails? Will it scale? Is this the organization's first interaction with AI?
+
+Practice Exercise: Identify AI types through use cases such as ChatGPT writing a poem, AutoGPT planning and booking a trip, stock market prediction, Face ID, code-writing bots, fraud detection, earthquake prediction from GPS noise, robot vacuum mapping, and translation services.
+
+Course Roadmap: Today we set up for success. Over the next four weeks, we learn to build our own AI agents. Across the full nine weeks, we learn how to launch AI products in the real world, from development to production deployment.

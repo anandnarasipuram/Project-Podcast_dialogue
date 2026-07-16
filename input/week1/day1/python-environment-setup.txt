@@ -1,0 +1,26 @@
+Unit: Python Environment Setup (Week 1, Day 1)
+
+Setting up your development environment is the foundation of everything in this bootcamp. Having the right tools configured correctly from the start saves time and prevents errors. This lesson is a reference guide to return to whenever starting a new project.
+
+Learning Goals: install and configure VSCode; create and configure a GitHub account; link GitHub to VSCode; install the Conda package manager; create and manage Conda environments; open Jupyter notebooks in VSCode; configure Git and commit changes via VSCode.
+
+VSCode: Visual Studio Code is a free, powerful code editor with strong support for Python, Jupyter notebooks, and Git. Download it from code.visualstudio.com and verify it opens.
+
+GitHub: like Google Drive but for code, with full version history. Essential for version control, collaboration, and showcasing your work. Create a free account at github.com, verify your email, and complete your profile.
+
+Linking GitHub to VSCode: install the official GitHub extension in VSCode, then sign in via the Accounts icon.
+
+Configure Git (critical step): without setting your global username and email, you cannot commit changes or send work to Ironhack. In the VSCode terminal run:
+  git config --global user.name "Your Name"
+  git config --global user.email "your.email@example.com"
+Then verify with the same commands (no value). Create an empty GitHub repository (do NOT initialize with a README, .gitignore, or license).
+
+Git basics: stage (git add) marks changes to save; commit (git commit) saves staged changes with a message; pull (git pull) gets the latest from GitHub; push (git push) sends your commits to GitHub.
+
+Conda environments: isolate each project in its own environment so dependencies stay separate and reproducible. Different projects may need different versions of the same package; installing everything globally causes conflicts. Install Miniconda (lighter) or Anaconda, check "Add to PATH" during install, and verify with `conda --version`. Create an environment via VSCode's Command Palette (Python: Select Interpreter -> Create Environment -> Conda -> choose Python 3.11 -> name it, e.g. bootcamp-env), then select it as the active interpreter (shown bottom-right).
+
+Jupyter notebooks in VSCode: interactive documents combining code, output, and markdown. Install the Jupyter extension, open or create a .ipynb file, and CRITICALLY select the correct Conda environment as the kernel (top-right). Verify with a cell: print("Hello, World!").
+
+Git workflow in VSCode: Initialize Repository (Source Control panel), Add Remote (origin -> your GitHub repo URL), stage changes (+), commit with a message (Ctrl/Cmd+Enter), then Push.
+
+Summary: VSCode is your primary editor; GitHub is essential for version control; always configure Git username/email before committing; Conda environments keep projects isolated; always verify the correct environment/kernel when opening notebooks. Bookmark this lesson as a reference.

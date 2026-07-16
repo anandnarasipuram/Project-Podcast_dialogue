@@ -58,7 +58,8 @@ def list_saved_lessons() -> list[tuple[str, str]]:
     return items
 
 
-def run_pipeline(transcript: str, title: str, voice: str, fmt: str = FORMAT_MONOLOGUE) -> dict:
+def run_pipeline(transcript: str, title: str, voice: str, fmt: str = FORMAT_MONOLOGUE,
+                  voice_a: str = "nova", voice_b: str = "onyx") -> dict:
     """Run the whole pipeline and return a result dict. Raises on any step failing."""
     document = load_transcript(text=transcript, title=title)
     client = get_client()
@@ -66,7 +67,8 @@ def run_pipeline(transcript: str, title: str, voice: str, fmt: str = FORMAT_MONO
     recap = make_recap(client, document, mode=mode)
 
     if mode == "dialogue":
-        audio_path = generate_dialogue_audio(client, recap.turns, OUTPUT_DIR / "recap.mp3")
+        audio_path = generate_dialogue_audio(client, recap.turns, OUTPUT_DIR / "recap.mp3",
+                                              voice_a=voice_a, voice_b=voice_b)
         script_display = "\n\n".join(f"{t.speaker}: {t.line}" for t in recap.turns)
     else:
         audio_path = generate_audio(client, recap.script, OUTPUT_DIR / "recap.mp3", voice=voice)
@@ -79,6 +81,7 @@ def run_pipeline(transcript: str, title: str, voice: str, fmt: str = FORMAT_MONO
         "audio_path": str(audio_path),
         "source_words": document.word_count,
     }
+    }
 
 
 # --------------------------------------------------------------------------
@@ -88,31 +91,28 @@ def run_pipeline(transcript: str, title: str, voice: str, fmt: str = FORMAT_MONO
 def build_ui():
     import gradio as gr
 
-    def on_generate(source_type, lesson, url, file_path, voice, fmt):
-        try:
-            # Exactly one source, chosen by the radio. The title is derived
-            # automatically; the model also names the episode.
-            if source_type == SRC_LESSON:
-                if not lesson:
-                    raise gr.Error("Please pick a saved lesson from the dropdown.")
-                source_text = Path(lesson).read_text(encoding="utf-8")
-                title = dict((v, k) for k, v in list_saved_lessons()).get(lesson, "Lesson Recap")
-            elif source_type == SRC_URL:
-                if not (url and url.strip()):
-                    raise gr.Error("Please paste a public (non-login) URL.")
-                source_text = fetch_url_text(url)
-                title = "Lesson Recap"
-            else:  # SRC_FILE
-                if not file_path:
-                    raise gr.Error("Please upload a .txt, .md, or .pdf file.")
-                source_text = read_local_file(file_path)
-                title = "Lesson Recap"
-            result = run_pipeline(source_text, title, voice, fmt)
-        except (LLMError, TTSError, ValueError) as exc:
-            # Turn any pipeline error into a friendly toast instead of a crash.
-            raise gr.Error(str(exc))
-        points_md = "### Key points\n" + "\n".join(f"- {p}" for p in result["key_points"])
-        return result["title"], points_md, result["script"], result["audio_path"]
+   def on_generate(source_type, lesson, url, file_path, voice, fmt, voice_a, voice_b):
+    try:
+        if source_type == SRC_LESSON:
+            if not lesson:
+                raise gr.Error("Please pick a saved lesson from the dropdown.")
+            source_text = Path(lesson).read_text(encoding="utf-8")
+            title = dict((v, k) for k, v in list_saved_lessons()).get(lesson, "Lesson Recap")
+        elif source_type == SRC_URL:
+            if not (url and url.strip()):
+                raise gr.Error("Please paste a public (non-login) URL.")
+            source_text = fetch_url_text(url)
+            title = "Lesson Recap"
+        else:  # SRC_FILE
+            if not file_path:
+                raise gr.Error("Please upload a .txt, .md, or .pdf file.")
+            source_text = read_local_file(file_path)
+            title = "Lesson Recap"
+        result = run_pipeline(source_text, title, voice, fmt, voice_a, voice_b)
+    except (LLMError, TTSError, ValueError) as exc:
+        raise gr.Error(str(exc))
+    points_md = "### Key points\n" + "\n".join(f"- {p}" for p in result["key_points"])
+    return result["title"], points_md, result["script"], result["audio_path"]
 
     with gr.Blocks(title="Podcast Studio - Content Recapper") as demo:
         gr.Markdown(
@@ -137,10 +137,11 @@ def build_ui():
                                   file_types=[".txt", ".md", ".markdown", ".pdf"],
                                   type="filepath", visible=False)
                 voice = gr.Dropdown(VOICES, value=DEFAULT_VOICE, label="Voice")
-                fmt = gr.Radio([FORMAT_MONOLOGUE, FORMAT_DIALOGUE], value=FORMAT_MONOLOGUE,
-                               label="Format",
-                               info="Dialogue uses two alternating voices instead of the one above.")
-                btn = gr.Button("Generate recap podcast", variant="primary")
+fmt = gr.Radio([FORMAT_MONOLOGUE, FORMAT_DIALOGUE], value=FORMAT_MONOLOGUE,
+               label="Format")
+voice_a = gr.Dropdown(VOICES, value="nova", label="Speaker A voice", visible=False)
+voice_b = gr.Dropdown(VOICES, value="onyx", label="Speaker B voice", visible=False)
+btn = gr.Button("Generate recap podcast", variant="primary")
             with gr.Column():
                 # Order: title, then the audio (the deliverable), then the supporting text.
                 out_title = gr.Textbox(label="Episode title", interactive=False)
@@ -160,13 +161,16 @@ def build_ui():
         source_type.change(_show_source, source_type, [lesson, url, file_in])
 
         def _show_voice(choice):
-            """Voice picker only matters in Monologue mode (Dialogue uses two fixed voices)."""
-            return gr.update(visible=choice == FORMAT_MONOLOGUE)
+    """Monologue: single voice picker. Dialogue: two voice pickers, one per speaker."""
+    is_dialogue = choice == FORMAT_DIALOGUE
+    return (gr.update(visible=not is_dialogue),
+            gr.update(visible=is_dialogue),
+            gr.update(visible=is_dialogue))
 
-        fmt.change(_show_voice, fmt, voice)
+fmt.change(_show_voice, fmt, [voice, voice_a, voice_b])
 
-        btn.click(on_generate, [source_type, lesson, url, file_in, voice, fmt],
-                  [out_title, out_points, out_script, out_audio])
+        btn.click(on_generate, [source_type, lesson, url, file_in, voice, fmt, voice_a, voice_b],
+          [out_title, out_points, out_script, out_audio])
     return demo
 
 

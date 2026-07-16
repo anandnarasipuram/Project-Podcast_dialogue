@@ -1,0 +1,26 @@
+Unit: Prompt Engineering Fundamentals (Week 2, Day 4)
+
+(Note: the lesson page embeds a slide deck that doesn't extract cleanly; this is a faithful summary of the topic as taught in the course.)
+
+Why it matters: the prompt is the CHEAPEST lever to improve an LLM's output - no fine-tuning, no new model. Clients often blame the model when the brief was the problem. A prompt is a brief to a brilliant but very literal contractor: a vague brief gets vague work; a sharp one gets what you actually wanted.
+
+The building blocks of a good prompt:
+- Role / persona ("You are a financial analyst...") - sets tone and expertise.
+- Task + output format ("Return JSON with fields a, b" or "exactly 3 bullets") - makes the output predictable.
+- Context - the source data or background the model should use.
+- Examples (few-shot) - show the pattern instead of only describing it.
+- Constraints ("under 50 words", "only use the provided text") - guardrails against drift and hallucination.
+
+Core techniques:
+- Zero-shot: ask directly, no examples.
+- Few-shot: include a few worked input-output examples so the model copies the pattern.
+- Chain-of-thought / step-by-step: ask the model to reason through steps for harder problems.
+- Structured output: hand the API a schema (e.g. a Pydantic class) so the reply is always the exact shape you need - the reliable way to prevent hallucinated structure (better than plain JSON mode).
+
+Key parameters:
+- Temperature: low = consistent/deterministic, high = creative/varied.
+- Model selection and token limits.
+
+Best practices: be specific about the outcome and format; give an example; set explicit constraints; ground the model in real source text; and ITERATE - refine the prompt based on what comes back.
+
+Watch-outs: a prompt STEERS output but cannot guarantee truth - hallucination still needs grounding (restricting to provided text) or human review. Too much context can dilute focus. Prompts that paraphrase the expected content can bias the model the wrong way; use prompts to supply names/jargon/format, not to script the answer.

@@ -1,0 +1,30 @@
+Unit: Neural Networks Fundamentals (Week 1, Day 3)
+
+Learning Goals: choose appropriate ML models (classification, regression, clustering) based on data and problem type; select evaluation metrics (accuracy, precision, recall, F1, RMSE, MAE) for different tasks; identify when to use distance-based, linear, tree-based, or specialty models based on preprocessing needs; explain when deep learning is necessary vs. traditional ML; apply the "Do you have a label?" and "Category or quantity?" model-selection framework.
+
+Non-Generative AI in Practice: While generative AI is exciting, non-generative AI is crucial for practical applications - easier to control, maintain, and predict, and often integrated with generative AI. Examples: fraud detection, churn prediction, disease diagnosis, loan approval, sales/energy forecasting, weather prediction, customer segmentation, facial recognition, quality inspection, satellite image analysis.
+
+Scikit-learn: the primary tool for classic AI, focusing on data processing and model building, for both supervised and unsupervised learning.
+
+Choosing the right model: all models learn a function f(x) but in different ways. The two key questions: "Do you have a label?" (supervised vs unsupervised) and "Are you predicting a category or a quantity?" (classification vs regression).
+- Supervised learning: needs labeled data / known outcomes. Category -> classification; quantity -> regression.
+- Unsupervised learning: unlabeled data to find patterns. Categories -> clustering; otherwise -> dimensionality reduction.
+
+Model categories:
+- Distance/Math-based (SVM, K-Nearest Neighbors, Neural Networks/MLP, PLS): predict from similarity between points; require careful scaling so all features are on the same scale.
+- Linear (Linear/Logistic Regression, Regularized models, Poisson, GAMs, Discriminant Analysis): assume a linear relationship f(x)=ax+b; need preprocessing for multicollinearity and scale.
+- Tree-based (Random Forest, Gradient Boosting, Decision Trees, BART): split data with decision "cuts"; robust, need minimal preprocessing, handle raw data well.
+- Specialty (MARS, Naive Bayes, RuleFit): don't fit neatly elsewhere; preprocessing depends on the model.
+
+Evaluation metrics:
+- Classification: Accuracy (balanced data), Precision (false positives costly), Recall (false negatives costly), F1 (balance on imbalanced data), AUC-ROC (comparing models/thresholds); Macro vs Weighted F1 for multi-class.
+- Regression: RMSE (default, penalizes large errors), MAE (robust to outliers), R^2 (explains variance to stakeholders), MAPE (compare across scales).
+- Clustering: Silhouette Score (aim > 0.5), Elbow Method (number of clusters), ARI (when true labels exist).
+
+Red flags: 99% accuracy on imbalanced data (useless model), R^2 = 1.0 (likely overfitting), high precision + low recall (missing many cases), RMSE much larger than MAE (significant outliers). Always use multiple metrics.
+
+Deep Learning: essential when data isn't tabular - images, text, audio, and other unstructured data. Neural networks are inspired by biological neurons: interconnected nodes with weighted computations and activation functions, learning to approximate complex functions f(x) through layers.
+
+TensorFlow vs Hugging Face: TensorFlow suits researchers/engineers building models from scratch; Hugging Face suits using or adapting existing pre-trained models.
+
+Deep-learning vocabulary: Epoch (one full pass through the training data - like reading a textbook once), Batch (small groups of examples processed together - like one chapter), Learning Rate (step size during optimization - too small = slow, too large = overcorrecting).

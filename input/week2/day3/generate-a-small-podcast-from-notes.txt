@@ -1,0 +1,18 @@
+Unit: Generate a Small Podcast from Notes (Week 2, Day 3)
+
+(Note: this lesson page embeds a slide deck that doesn't extract cleanly; this is a faithful summary of the activity as taught - and it is exactly what Project 1 builds on.)
+
+Goal: turn written notes (or any text) into a short spoken audio "podcast" by chaining an LLM with a text-to-speech model. It's a hands-on warm-up for the Project 1 Podcast Studio.
+
+The pipeline (three steps):
+1) Input - start from some text: your own notes, a lesson transcript, or an article.
+2) Transform with an LLM - send the text to an LLM (e.g. OpenAI) with a prompt that restructures/summarises it into a clear, SPOKEN script: a short intro, the key points explained simply, and a sign-off. Writing for the ear (no bullet symbols, natural sentences) matters.
+3) Generate audio with TTS - send the script to a text-to-speech API (e.g. OpenAI TTS) to produce an audio file (mp3) you can play.
+
+Key ideas:
+- Prompt design shapes quality: ask for a spoken style, a target length, and structure; ground it in the notes so it doesn't invent content.
+- Choose a voice and keep episodes short.
+- Keep the code modular (separate the LLM step from the TTS step) so each part can be tested on its own.
+- This same notes -> LLM -> TTS pattern is the backbone of the Project 1 "Podcast Studio", where it's wrapped in a Gradio interface with error handling and multiple input sources.
+
+Takeaway: combining a language model (to think/summarise) with a speech model (to speak) is a simple but powerful pattern for turning text into accessible audio content.

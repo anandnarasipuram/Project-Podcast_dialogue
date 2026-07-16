@@ -1,0 +1,35 @@
+Unit: Classical Project Management - Scoping and Basics (Week 2, Day 4)
+
+Overview: classical project-management fundamentals - project definition, organisational structures, management approaches, and processes for scoping and managing projects, with attention to AI consulting.
+
+What is a project? A temporary endeavour with a defined start and end, creating a unique product/service/result. Checklist: defined goal, limited resources, interdisciplinary, someone responsible for results, complex, novel (not routine), defined start/end. If several of these aren't "yes", it's ongoing operations, not a project.
+
+Project types: Investment (build new assets/infrastructure), Organisational (change/improve structures & processes), R&D (develop new knowledge or products). AI projects can be any of the three.
+
+Management approaches: Traditional/sequential (linear, phase-by-phase), Agile (iterative, short cycles, continuous feedback, adaptive), Waterfall (strict sequence, heavy documentation/approvals). Most AI projects are Agile due to experimentation and constant adaptation.
+
+Organisational structures: Functional (grouped by specialism), Pure Project (a self-contained, dedicated team), Matrix (people report to functional managers but work across projects; the project manager has limited authority).
+
+Project files across the lifecycle: BEFORE (define the people, the project - objectives of performance/cost/time, contract, specs - and the calendar: phases, milestones, work breakdown, risks, resources); DURING (update activities, work packages, reports, calculations); END (final invoicing, quality/acceptance criteria, actual cost, deliverables, evaluation, knowledge gained).
+
+Project controlling: continuously compare actual vs planned (time/cost/quality) and act on gaps. Keep a single source of truth (Configuration Management - document every result, update on every change). Evaluate every change request (Change Management - identify, describe, classify impact, assess, approve, implement, verify). Make information accessible to the right people (Documentation Management, version control).
+
+Scope creep & context: use PESTLE analysis (Political, Economical, Sociological, Technological, Legal, Ecological) to anticipate external factors.
+
+Stakeholder analysis (interest x influence quadrants): High/High - steering committee, keep closely involved; High interest/Low influence - involve as core team, make them feel heard; Low interest/High influence - advisory board, keep informed to maintain support; Low/Low - summarised, situational updates.
+
+Project objectives: precise, comprehensible, positive, quantifiable, and SOLUTION-NEUTRAL (don't lock in a solution early). The Triple Constraint: Quality, Time, Cost. In AI, use a Proof of Concept (PoC) and MVP to validate before full build.
+
+The project manager: manages the whole lifecycle; needs technical, business, and contractual knowledge plus technical, methodological, organisational and social skills. AI CAN help with information retrieval, templates, scheduling. AI CANNOT replace human communication, problem-solving/trade-offs, collaboration, and strategic thinking (what to prioritise, what risks to take).
+
+Managing technical teams: explain WHY the work matters, define clear acceptance criteria and "definition of done", remove blockers, and protect conditions for deep work.
+
+Feedback: receive it as an opportunity, not personal criticism; give it precisely, describing your experience (not assumed intent), only on things that are actionable. Techniques: sandwich (positive-constructive-positive), and mind the timing.
+
+Quality management = Configuration Management lifecycle: Identify -> Control -> Account for changes -> Audit against specifications.
+
+Work Breakdown Structure (WBS): list all activities hierarchically, define interdependencies (sequential / concurrent / independent), estimate time, optimise the schedule. Critical Path = the chain of activities with zero float (longest path); if it slips, the project end date slips. In practice, estimating tech projects is messy, which is why Agile exists.
+
+Cost management: Variable costs (GPU/TPU, API inference, energy, cloud, vector-DB queries) vs Fixed costs (salaries, office, licences, insurance). GenAI cost overruns cascade dangerously (e.g., an LLM at $0.03/call can burn the annual budget in weeks if usage is underestimated). Cost categories: Data, Model, Application, Evaluation, Ops, Compliance. Estimate using the right unit ($ per 1M tokens, $ per GPU-hour, $ per 1,000 docs, $ per monthly active user), and record ACTUAL costs during PoC/MVP.
+
+Risk management: GenAI projects are especially high risk (novel, uncertain model updates, unrealistic expectations). Unlike traditional software (a bug exists or not), AI can be "slightly wrong/biased/harmful" - hard to catch. Assess both PROBABILITY and IMPACT. Mitigation strategies: Avoidance (eliminate), Reduction (evaluation, monitoring, human-in-the-loop, red-teaming, injection protection), Mitigation (roll back a model version, disable AI if quality drops), Transfer (contracts/monitoring vendors), Acceptance (monitor low risks). Risk management belongs in every phase - kickoff, development, and production.

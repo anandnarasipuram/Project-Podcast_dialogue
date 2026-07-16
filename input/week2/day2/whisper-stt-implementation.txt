@@ -1,0 +1,16 @@
+Unit: Whisper STT Implementation (Week 2, Day 2)
+
+(Day 2 is a hands-on lab. This is a faithful summary of what it teaches - based on building it.)
+
+Goal: transcribe meeting audio with OpenAI's Whisper API - accurately, with timestamps, and for long recordings - then export the results in useful formats. A real AI-consultant task: turning hours of audio into searchable, timestamped text.
+
+Key decisions and concepts:
+- Response format: request `verbose_json` (not plain text). Only that format returns per-segment start/end timestamps - the source of all timing. Use model `whisper-1`, since the newer transcription models don't return segment timestamps.
+- Chunking for long audio: the API rejects files over 25 MB (~20-30 min of speech), so split long recordings into time-based chunks (e.g. 10-minute pieces) and transcribe each.
+- Timestamp stitching (the classic gotcha): each chunk's clock restarts at 0, so you must add each chunk's start OFFSET back to every segment's start/end - otherwise all segments pile onto minute zero. Compute offsets from the actual chunk lengths so the last (short) chunk still lines up.
+- Guided vs unguided transcription: an optional `prompt` biases spelling toward names, acronyms and jargon. It helps on noisy audio/rare terms, but on clean audio it can nudge a word wrong and is non-deterministic - a soft hint, not a correction rule.
+- Exporting: write the transcript in three shapes for three audiences - TXT (human-readable with [HH:MM:SS] prefixes), SRT (subtitles for video players), and JSON (machine-readable segments).
+
+Practical notes: keep the API key in a git-ignored .env; handle transient errors (rate limits, network) with retry + backoff, and fail fast on permanent errors (bad key, unknown model); pydub + ffmpeg handle the audio splitting.
+
+Takeaway: Whisper gives strong speech-to-text, but the consultant's value is engineering around its constraints - timestamps via verbose_json, chunking for size limits, offset stitching, prompts for jargon, and multi-format export.

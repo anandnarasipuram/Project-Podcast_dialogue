@@ -1,0 +1,14 @@
+Unit: Day 4 ML Labs (Week 1, Day 4) - hands-on practice applying Day 3's concepts
+
+Day 4 is a practical labs day where you apply the machine-learning ideas from Neural Networks Fundamentals to real datasets. Three labs:
+
+1) LAB | Data Manipulation + JSON Handling
+Focus: getting data ready before any modeling. Load a dataset (e.g. Titanic) into a pandas DataFrame, explore it, handle missing values, fix data types, and work with JSON - the standard structured format for exchanging data with APIs. Key idea: most of a data project's time is cleaning and shaping data, not modeling. Clean, well-structured data is the fuel for any model.
+
+2) LAB | sklearn Model Training + Evaluation
+Focus: train and, crucially, evaluate models with scikit-learn. Split data into train and test sets so you measure performance on unseen data. Fit a classifier (e.g. K-Nearest Neighbors), then evaluate with the right metrics - accuracy, precision, recall, and a confusion matrix - and understand why accuracy alone misleads on imbalanced data (e.g. churn or disease prediction). Compare settings (like k in KNN) to pick a good model. Key idea: your job is to tell whether a model can be trusted, using the metric that matches the business cost.
+
+3) LAB | Build a Simple Neural Network (extra/optional)
+Focus: build a basic neural network to see, hands-on, how layers of neurons learn to approximate a function - connecting the deep-learning theory from Day 3 to working code.
+
+Overall takeaway for the day: the ML workflow is data preparation -> train/test split -> fit -> evaluate with appropriate metrics. Good data and honest evaluation matter more than a fancy algorithm.
